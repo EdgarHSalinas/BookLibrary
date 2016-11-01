@@ -14,7 +14,6 @@ var nav = [{
     Link: '/Authors',
     Text: 'Author'
 }];
-
 var bookRouter = require('./src/routes/bookRoutes')(nav);
 var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
@@ -24,13 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({
-    secret: 'boot'
+    secret: 'library'
 }));
 
 require('./src/config/passport')(app);
-
-
-
 
 app.set('views', './src/views');
 
@@ -40,7 +36,7 @@ app.use('/Books', bookRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
 
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
     res.render('index', {
         title: 'Hello from render',
         nav: [{
@@ -50,12 +46,11 @@ app.get("/", function (req, res) {
             Link: '/Authors',
             Text: 'Authors'
         }]
-
     });
 });
 
-app.get("/books", function (req, res) {
-    res.send('Edgar Salinas Books');
+app.get('/books', function (req, res) {
+    res.send('Hello Books');
 });
 
 app.listen(port, function (err) {

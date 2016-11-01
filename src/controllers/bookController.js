@@ -7,8 +7,8 @@ var bookController = function (bookService, nav) {
         getIndex: getIndex,
         getById: getById
 
-    }
+    };
 
-}
+};
 
 module.exports = bookController;
